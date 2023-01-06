@@ -95,9 +95,7 @@ def busca_cpf(req):
             fulfillmentMessages.append({"text": {"text": ["Time do Coração: " + c.time_coracao]}}) 
             fulfillmentMessages.append({"text": {"text": ["Qual assunto que deseja falar?"]}})   
             
-            fulfillmentMessages.append({"text": {"text": ["Cadastro"]}})
-            fulfillmentMessages.append({"text": {"text": ["Compra de Ingresso"]}})
-            fulfillmentMessages.append({"text": {"text": ["Cancelamento"]}})
+            fulfillmentMessages.append({"text": {"text": ["Cadastro\nCompra de Ingresso\nCancelamento"]}})
     else:
        fulfillmentMessages.append({"text": {"text": ["Desculpe-nos, não encontramos o cadastro para o CPF informado."]}})
     
