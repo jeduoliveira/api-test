@@ -10,3 +10,4 @@ SQLAlchemy
 Werkzeug
 WTForms
 psutil
+waitress

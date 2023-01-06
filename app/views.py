@@ -29,6 +29,7 @@ def webhook():
 
 @app.route('/')
 def home():
+    db.create_all()
     """Render website's home page."""
     return render_template('home.html')
 
