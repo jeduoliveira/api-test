@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <h1 class="page-header">Add User</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-danger">
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+  <form method="POST" action="{{ url_for('add_cliente') }}">
+    {{ form.csrf_token }}
+    <div class="form-group">{{ form.nome.label }} {{ form.nome(size=200, class="form-control") }}</div>
+    <div class="form-group">{{ form.email.label }} {{ form.email(size=200, class="form-control", type="email") }}</div>
+    <div class="form-group">{{ form.cpf.label }} {{ form.cpf(size=11, class="form-control", type="cpf") }}</div>
+    <div class="form-group">{{ form.time_coracao.label }} {{ form.time_coracao(size=255, class="form-control", type="Time do Coração") }}</div>
+    <div class="form-group">{{ form.tipo.label }} {{ form.tipo(size=11, class="form-control", type="Socio Torcedor") }}</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}
