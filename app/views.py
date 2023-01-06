@@ -91,7 +91,7 @@ def busca_cpf(req):
         for c in clientes:
             fulfillmentMessages.append({"text": {"text": ["Olá " + c.nome + " tudo bem? Encontramos seu cadastro "]}})
             fulfillmentMessages.append({"text": {"text": ["email: " + c.email + "\nNivel Socio: " + c.tipo+"\nTime do Coração: " + c.time_coracao]}}) 
-            fulfillmentMessages.append({"text": {"text": ["Qual assunto que deseja falar?\n\nCadastro\nCompra de Ingresso\nCancelamento"]}})
+            fulfillmentMessages.append({"text": {"text": ["É para este cadastro que você deseja continuar? Sim ou Não?"]}})
     else:
        fulfillmentMessages.append({"text": {"text": ["Desculpe-nos, não encontramos o cadastro para o CPF informado."]}})
     
