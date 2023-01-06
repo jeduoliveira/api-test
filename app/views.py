@@ -81,7 +81,8 @@ def flash_errors(form):
 
 def busca_cpf(req):
     fulfillmentMessages = []
-    cpf = req["queryResult"]['parameters']['cpf']
+    cpf = req.get('queryResult').get('parameters').get('cpf')
+    
     clientes = db.session.query(Cliente).filter_by(cpf=cpf)
     
     exists = db.session.query(clientes.exists()).scalar()
@@ -91,7 +92,12 @@ def busca_cpf(req):
             fulfillmentMessages.append({"text": {"text": ["Olá " + c.nome + " tudo bem? Encontramos seu cadastro "]}})
             fulfillmentMessages.append({"text": {"text": ["email: " + c.email]}})
             fulfillmentMessages.append({"text": {"text": ["Nivel Socio: " + c.tipo]}})
-            fulfillmentMessages.append({"text": {"text": ["Time do Coração: " + c.time_coracao]}})   
+            fulfillmentMessages.append({"text": {"text": ["Time do Coração: " + c.time_coracao]}}) 
+            fulfillmentMessages.append({"text": {"text": ["Qual assunto que deseja falar?"]}})   
+            
+            fulfillmentMessages.append({"text": {"text": ["Cadastro"]}})
+            fulfillmentMessages.append({"text": {"text": ["Compra de Ingresso"]}})
+            fulfillmentMessages.append({"text": {"text": ["Cancelamento"]}})
     else:
        fulfillmentMessages.append({"text": {"text": ["Desculpe-nos, não encontramos o cadastro para o CPF informado."]}})
     
