@@ -117,7 +117,7 @@ def assinar_plano(req):
             
             fulfillmentMessages.append({"text": {"text": ["Parabens "+ nome + ", seja bem-vindo ao caldeirão de são januario,  você acabou de assinar o plano " + plano ]}})
     
-        return { "fulfillmentMessages": fulfillmentMessages }   
+    return { "fulfillmentMessages": fulfillmentMessages }   
      
 def busca_cpf(req):
     fulfillmentMessages = []
