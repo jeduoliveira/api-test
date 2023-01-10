@@ -34,8 +34,9 @@ def webhook():
         json_body = assinar_plano(req)
     else:
         json_body = {}
-        
-    return jsonify(json_body)
+     
+    print(jsonify(json_body))   
+    return 
 
 @app.route('/')
 def home():
@@ -115,7 +116,7 @@ def assinar_plano(req):
             db.session.commit()
             
             fulfillmentMessages.append({"text": {"text": ["Parabens "+ nome + ", seja bem-vindo ao caldeirão de são januario,  você acabou de assinar o plano " + plano ]}})
-    print(fulfillmentMessages)
+    
     return fulfillmentMessages      
     
 def busca_cpf(req):
