@@ -38,6 +38,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/static/js/bootstrap.min.js"></script>
+
+<script>
+  (function(d,t) {
+    var BASE_URL="https://chat.agilifyticket.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'DXt4BuLdfRvNeZTZ7PLc7K4o',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
+
     {% block js %} {% endblock%}
   </body>
 </html>
