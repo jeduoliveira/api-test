@@ -22,9 +22,19 @@ import json
 def webhook():
     req = request.get_json(silent=True, force=True)
 
-    json_body = busca_cpf(req)
+    action = req.get('queryResult').get('action')
+    print(action)
     
+    json_body = None
     
+    print("assinatura" in action)
+    if action == 'input.inicio.socio':
+        json_body = busca_cpf(req)
+    elif "assinatura" in action:
+        json_body = assinar_plano(req)
+    else:
+        json_body = {}
+        
     return jsonify(json_body)
 
 @app.route('/')
@@ -79,12 +89,40 @@ def flash_errors(form):
             ))
 
 
+def assinar_plano(req):
+    fulfillmentMessages = []
+    for context in req.get('queryResult').get('outputContexts'):
+        if "contexts/flamengo" in context['name']:
+            clube = "Flamengo"
+            plano = "socioouro" if context['parameters']["plano"] == "1" else context['parameters']["plano"]
+            cpf   = context['parameters']["cpf"]
+            nome  = context['parameters']["nome"]
+            
+            c = Cliente(nome, None, cpf, plano, clube); 
+            db.session.add(c)
+            db.session.commit()
+            
+            fulfillmentMessages.append({"text": {"text": ["Parabens "+ nome + ", seja bem-vindo a nação rubro negra,  você acabou de assinar o plano " + plano ]}})
+        elif "contexts/vasco" in context['name']:
+            clube = "Vasco"
+            plano = "caldeirao" if context['parameters']["plano"] == "1" else context['parameters']["plano"]
+            cpf   = context['parameters']["cpf"]
+            nome  = context['parameters']["nome"]
+            
+            c = Cliente(nome, None, cpf, plano, clube); 
+            db.session.add(c)
+            db.session.commit()
+            
+            fulfillmentMessages.append({"text": {"text": ["Parabens "+ nome + ", seja bem-vindo ao caldeirão de são januario,  você acabou de assinar o plano " + plano ]}})
+
+    return fulfillmentMessages      
+    
 def busca_cpf(req):
     fulfillmentMessages = []
     cpf = req.get('queryResult').get('parameters').get('cpf')
     
+    print('cpf=' + cpf)
     clientes = db.session.query(Cliente).filter_by(cpf=cpf)
-    
     exists = db.session.query(clientes.exists()).scalar()
     
     if exists:
