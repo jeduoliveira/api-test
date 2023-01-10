@@ -52,7 +52,6 @@ def about():
 @app.route('/clientes')
 def show_clientes():
     clientes = db.session.query(Cliente).all() # or you could have used Cliente.query.all()
-
     return render_template('show_clientes.html', clientes=clientes)
 
 @app.route('/add-cliente', methods=['POST', 'GET'])
@@ -114,7 +113,7 @@ def assinar_plano(req):
             db.session.commit()
             
             fulfillmentMessages.append({"text": {"text": ["Parabens "+ nome + ", seja bem-vindo ao caldeirão de são januario,  você acabou de assinar o plano " + plano ]}})
-
+    print(fulfillmentMessages)
     return fulfillmentMessages      
     
 def busca_cpf(req):
