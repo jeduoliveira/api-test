@@ -35,8 +35,8 @@ def webhook():
     else:
         json_body = {}
      
-    print(jsonify(json_body))   
-    return 
+    print(json_body)   
+    return jsonify(json_body)
 
 @app.route('/')
 def home():
