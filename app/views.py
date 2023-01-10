@@ -96,8 +96,9 @@ def assinar_plano(req):
             plano = "socioouro" if context['parameters']["plano"] == "1" else context['parameters']["plano"]
             cpf   = context['parameters']["cpf"]
             nome  = context['parameters']["nome"]
+            email  = context['parameters']["email"]
             
-            c = Cliente(nome, None, cpf, plano, clube); 
+            c = Cliente(nome, email, cpf, plano, clube); 
             db.session.add(c)
             db.session.commit()
             
@@ -107,8 +108,9 @@ def assinar_plano(req):
             plano = "caldeirao" if context['parameters']["plano"] == "1" else context['parameters']["plano"]
             cpf   = context['parameters']["cpf"]
             nome  = context['parameters']["nome"]
+            email  = context['parameters']["email"]
             
-            c = Cliente(nome, None, cpf, plano, clube); 
+            c = Cliente(nome, email, cpf, plano, clube); 
             db.session.add(c)
             db.session.commit()
             
