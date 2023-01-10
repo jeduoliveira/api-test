@@ -103,7 +103,7 @@ def assinar_plano(req):
             db.session.commit()
             
             fulfillmentMessages.append({"text": {"text": ["Parabens "+ nome + ", seja bem-vindo a nação rubro negra,  você acabou de assinar o plano " + plano ]}})
-        elif "contexts/vasco" in context['name']:
+        elif "contexts/vascodagama" in context['name']:
             clube = "Vasco"
             plano = "caldeirao" if context['parameters']["plano"] == "1" else context['parameters']["plano"]
             cpf   = context['parameters']["cpf"]
